@@ -1,6 +1,6 @@
 :: Copyright (c) 2023-2024 hminid <https://github.com/hminid/QuickChangeIP>
 
-:: 文件名：QuickChangeIP.cmd 
+:: 下载运行文件：QuickChangeIP.cmd 
 
 :: 该脚本需要管理员权限
 

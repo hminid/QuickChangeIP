@@ -1,17 +1,15 @@
 :: Copyright (c) 2023-2024 hminid <https://github.com/hminid/QuickChangeIP>
-:: ÎÄ¼şÃû£ºQuickChangeIP.cmd 
-:: ¸Ã½Å±¾ĞèÒª¹ÜÀíÔ±È¨ÏŞ
-:: "ÎŞÏßÍøÂçÁ¬½Ó" ÎªĞèÒª¸ü¸ÄIPµÄÍø¿¨Ãû£¬Çë¸ù¾İÊµ¼ÊÇé¿ö½øĞĞĞŞ¸Ä
+:: æ–‡ä»¶åï¼šQuickChangeIP.cmd 
+:: è¯¥è„šæœ¬éœ€è¦ç®¡ç†å‘˜æƒé™
+:: "æ— çº¿ç½‘ç»œè¿æ¥" ä¸ºéœ€è¦æ›´æ”¹IPçš„ç½‘å¡åï¼Œè¯·æ ¹æ®å®é™…æƒ…å†µè¿›è¡Œä¿®æ”¹
 
-
-:start
-title QuickChangeIP ¿ìËÙÇĞ»»IP
+title QuickChangeIP å¿«é€Ÿåˆ‡æ¢IP
 @echo off
 cls
 echo.
 
 :set_default
-set eth="ÎŞÏßÍøÂçÁ¬½Ó"
+set eth="æ— çº¿ç½‘ç»œè¿æ¥"
 set netmask=255.255.255.0
 set dns1=223.6.6.6
 set dns2=223.5.5.5
@@ -33,34 +31,34 @@ set ip_[4]=10.0.0.2
 set gw_[4]=10.0.0.1
 
 :start
-echo +++++++++++++++±ØĞè¹ÜÀíÔ±È¨ÏŞ!!!
-echo +  ĞòºÅ  IPµØÖ·  
+echo +++++++++++++++å¿…éœ€ç®¡ç†å‘˜æƒé™!!!
+echo +  åºå·  IPåœ°å€  
 echo +   0  DHCP
 echo +   1  %ip_[1]% gateway=%gw_[1]%
 echo +   2  %ip_[2]% gateway=%gw_[2]%
 echo +   3  %ip_[3]% gateway=%gw_[3]%
 echo +   4  %ip_[4]% gateway=%gw_[4]%
-echo +   9  ·ÅÆúÉèÖÃ(»Ø³µÖ±½ÓÍË³ö)
+echo +   9  æ”¾å¼ƒè®¾ç½®(å›è½¦ç›´æ¥é€€å‡º)
 echo.
 
 :choice
 set choice=
-set /p choice=ÇëÑ¡Ôñ:[0,1,2,3,4,9]?
+set /p choice=è¯·é€‰æ‹©:[0,1,2,3,4,9]?
 if %choice%==0 (goto do_dhcp)
 if %choice%==1 (set ip=%ip_[1]% & set gw=%gw_[1]% &	goto do_static )
 if %choice%==2 (set ip=%ip_[2]% & set gw=%gw_[2]% &	goto do_static )
 if %choice%==3 (set ip=%ip_[3]% & set gw=%gw_[3]% &	goto do_static )
 if %choice%==4 (set ip=%ip_[4]% & set gw=%gw_[4]% &	goto do_static )
-if %choice%==9 (goto end)  else (echo ÊäÈë´íÎó£¬ÇëÖØĞÂÊäÈë & goto choice )
+if %choice%==9 (goto end)  else (echo è¾“å…¥é”™è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ & goto choice )
 
 :do_dhcp
-echo ÉèÖÃIPµØÖ·×Ô¶¯»ñÈ¡(dhcp)
+echo è®¾ç½®IPåœ°å€è‡ªåŠ¨è·å–(dhcp)
 netsh interface ip set address name=%eth% source=dhcp
 netsh interface ip set dns name=%eth% source=dhcp
 goto end
 
 :do_static
-echo ĞòºÅ (%choice%)
+echo åºå· (%choice%)
 echo ip= %ip%
 echo gw= %gw%
 echo dns1=%dns1%
